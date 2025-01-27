@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+<title>will holdsworth's blog</title>
+<link>https://fi33.buzz</link>
+<description>blog</description>
+<item>
+<title>welcome!</title>
+<link>https://fi33.buzz/welcome.html</link>
+<guid>https://fi33.buzz/welcome.html</guid>
+<pubDate>Mon, 27 Jan 2025 22:16:57 +1100</pubDate>
+<description>the static site generator i'm using to kickstart this blog[1] requires a single post to exist in order to compile, and failing to provide a post sends `make` into an infinite loop.</description>
+</item>
+</channel>
+</rss>
