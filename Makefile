@@ -28,7 +28,7 @@ init:
 	mkdir -p $(BLOG_SRC) data templates
 	printf '<!DOCTYPE html><html><head><title>$$TITLE</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="alternate" href="atom.xml" type="application/atom+xml" title="Atom feed"/><style>body{font-family:monospace;margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#d9d9d9;background-color:#000;padding:0 10px}html a{color:#00a2e7}html a:visited {color:#ca1a70}h1,h2,h3{line-height:1.2}</style></head><body>' > templates/header.html
 	printf '</body></html>' > templates/footer.html
-	printf '<header><h1>will holdsworth'\''s blog</h1><nav><p><br></p></nav></header><body>' > templates/index_header.html
+	printf '<header><h1>will holdsworth'\''s blog</h1><nav></nav></header><body>' > templates/index_header.html
 	printf '<p>tags: ' > templates/tag_list_header.html
 	printf '<a href="$$URL">#$$NAME</a>' > templates/tag_entry.html
 	printf ', ' > templates/tag_separator.html
