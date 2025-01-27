@@ -2,7 +2,7 @@ welcome!
 
 the static site generator i'm using to kickstart this blog[1] requires a single post to exist in order to compile, and failing to provide a post sends `make` into an infinite loop.
 
-so without further ado here it is, my first post!
+so without further ado... here it is, my first post!
 
 topics to expect once i get myself more organised:
 
