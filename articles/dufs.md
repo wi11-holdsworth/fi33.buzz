@@ -76,5 +76,5 @@ thanks for stopping by ^.^
 
 [6] [round sync](https://github.com/newhinton/Round-Sync)
 
-;tags: all self-hosting cloud-storage nixos tailscale
+;tags: self-hosting cloud-storage nixos tailscale
 

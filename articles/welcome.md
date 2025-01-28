@@ -15,4 +15,4 @@ thanks for stopping by ^.^
 
 [1] [blogit](https://pedantic.software/git/blogit) 
 
-;tags: all
+;tags: 
