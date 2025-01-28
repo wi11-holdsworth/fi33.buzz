@@ -5,6 +5,13 @@
 <link>https://fi33.buzz</link>
 <description>blog</description>
 <item>
+<title>quick and easy cloud storage with dufs and nixos</title>
+<link>https://fi33.buzz/dufs.html</link>
+<guid>https://fi33.buzz/dufs.html</guid>
+<pubDate>Tue, 28 Jan 2025 18:41:39 +1100</pubDate>
+<description>dufs[1] -- the distinctive file utility server -- is a decent cloud storage replacement for those looking to move away from third-party services like google drive or proton drive. it supports webdav and https file transfer protocols.</description>
+</item>
+<item>
 <title>welcome!</title>
 <link>https://fi33.buzz/welcome.html</link>
 <guid>https://fi33.buzz/welcome.html</guid>
