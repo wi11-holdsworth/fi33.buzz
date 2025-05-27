@@ -1,7 +1,0 @@
-BLOG_REMOTE:=opal:/srv/fi33buzz
-BLOG_DATE_FORMAT:=%Y/%m/%d %H:%M
-BLOG_DATE_FORMAT_INDEX:=%Y/%m/%d
-BLOG_TITLE:=will holdsworth's blog
-BLOG_URL_ROOT:=https://fi33.buzz
-BLOG_FEED_MAX:=20
-BLOG_FEEDS:=rss atom
