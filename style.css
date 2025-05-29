@@ -19,12 +19,12 @@ a:visited {
 }
 
 a:hover {
-    color: #d9d9d9;
+    color: white;
     background-color: #00a2e7;
 }
 
 a:visited:hover {
-    color: #d9d9d9;
+    color: white;
     background-color: #ca1a70;
 }
 
