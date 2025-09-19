@@ -1,51 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="dufs (the distinctive file
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="dufs (the distinctive file
   utility server) is a cloud storage replacement for those looking to move away from third-party services like
-  Google Drive or Proton Drive. it supports WebDAV and HTTPS file transfer protocols.">
-  <link rel="stylesheet" href="../../../index.css">
-  <title>Quick & easy cloud storage with dufs and NixOS</title>
-</head>
+  Google Drive or Proton Drive. it supports WebDAV and HTTPS file transfer protocols."
+    />
+    <link rel="stylesheet" href="../../../index.css" />
+    <title>Quick & easy cloud storage with dufs and NixOS</title>
+  </head>
 
-<body>
-  <header>
-    <h1>Will Holdsworth</h1>
-    <hr>
-    <nav>
-      <a href="../../../index.html">Home</a>
-      |
-      <a href="../../../projects/index.html">Projects</a>
-      | Blog |
-      <a href="../../../pages/about.html">About</a>
-      |
-      <a href="../../../pages/links.html">Links</a>
-    </nav>
-    <hr>
-  </header>
+  <body>
+    <header>
+      <h1>Will Holdsworth</h1>
+      <hr />
+      <nav>
+        <a href="../../../index.html">Home</a>
+        |
+        <a href="../../../projects/index.html">Projects</a>
+        | Blog |
+        <a href="../../../pages/links.html">Links</a>
+      </nav>
+      <hr />
+    </header>
 
-  <main>
-    <a href="../../index.html">&laquo; Return to posts</a>
-    <h1>Quick & easy cloud storage with dufs and NixOS</h1>
-    <p>
-      dufs<sup><a id="footnote-1-ref" href="#footnote-1" title="link to footnote">1</a></sup> (the distinctive file
-      utility server) is a cloud storage replacement for those looking to move away from third-party services like
-      Google Drive or Proton Drive. it supports WebDAV and HTTPS file transfer protocols.
-    </p>
-    <p>It's very easy to set up and get going in NixOS using a Docker container.</p>
+    <main>
+      <a href="../../index.html">&laquo; Return to posts</a>
+      <h1>Quick & easy cloud storage with dufs and NixOS</h1>
+      <p>
+        dufs<sup
+          ><a id="footnote-1-ref" href="#footnote-1" title="link to footnote"
+            >1</a
+          ></sup
+        >
+        (the distinctive file utility server) is a cloud storage replacement for
+        those looking to move away from third-party services like Google Drive
+        or Proton Drive. it supports WebDAV and HTTPS file transfer protocols.
+      </p>
+      <p>
+        It's very easy to set up and get going in NixOS using a Docker
+        container.
+      </p>
 
-    <h2>Set up dufs</h2>
-    <p>First, enable docker in your <code>configuration.nix</code>:</p>
-    <pre>
+      <h2>Set up dufs</h2>
+      <p>First, enable docker in your <code>configuration.nix</code>:</p>
+      <pre>
       <code>
   virtualisation.docker.enable = true;
       </code>
     </pre>
-    Then define a Docker container, either in your <code>configuration.nix</code> or in a custom module:
-    <pre>
+      Then define a Docker container, either in your
+      <code>configuration.nix</code> or in a custom module:
+      <pre>
       <code>
   virtualisation.oci-containers = {
     backend = "docker";
@@ -74,84 +83,114 @@
   };
       </code>
     </pre>
-    Rebuild your configuration by running <code>sudo nixos-rebuild switch</code> and head on over to
-    <code>http://localhost:5000</code> to behold your lovely files. Now we need a method to access our files on other
-    devices inside (and outside) of our home network. Tailscale<sup><a id="footnote-2-ref" href="#footnote-2"
-        title="link to footnote">2</a></sup> provides commands to accomplish this easily.
+      Rebuild your configuration by running
+      <code>sudo nixos-rebuild switch</code> and head on over to
+      <code>http://localhost:5000</code> to behold your lovely files. Now we
+      need a method to access our files on other devices inside (and outside) of
+      our home network. Tailscale<sup
+        ><a id="footnote-2-ref" href="#footnote-2" title="link to footnote"
+          >2</a
+        ></sup
+      >
+      provides commands to accomplish this easily.
 
-    <h2>Set up Tailscale</h2>
-    <p>
-      You can use Tailscale to access the files on other devices inside (and outside) of your home network. Tailscale is
-      like a crazy-fast vpn with a bunch of other comfort features like MagicDNS<sup><a id="footnote-3-ref"
-          href="#footnote-3" title="link to footnote">3</a></sup>, keyless SSH<sup><a id="footnote-4-ref"
-          href="#footnote-4" title="link to footnote">4</a></sup> and
-      easy HTTPS<sup><a id="footnote-5-ref" href="#footnote-5" title="link to footnote">5</a></sup>.
-    </p>
-    <p>To enable it in nixos, add the following to your <code>configuration.nix</code>:</p>
-    <pre>
+      <h2>Set up Tailscale</h2>
+      <p>
+        You can use Tailscale to access the files on other devices inside (and
+        outside) of your home network. Tailscale is like a crazy-fast vpn with a
+        bunch of other comfort features like MagicDNS<sup
+          ><a id="footnote-3-ref" href="#footnote-3" title="link to footnote"
+            >3</a
+          ></sup
+        >, keyless SSH<sup
+          ><a id="footnote-4-ref" href="#footnote-4" title="link to footnote"
+            >4</a
+          ></sup
+        >
+        and easy HTTPS<sup
+          ><a id="footnote-5-ref" href="#footnote-5" title="link to footnote"
+            >5</a
+          ></sup
+        >.
+      </p>
+      <p>
+        To enable it in nixos, add the following to your
+        <code>configuration.nix</code>:
+      </p>
+      <pre>
       <code>
   services.tailscale.enable = true;
   networking.firewall.trustedInterfaces = [ "tailscale0" ];
       </code>
     </pre>
-    <p>
-      Once again, rebuild your configuration by running <code>sudo nixos-rebuild switch</code> and run
-      <code>tailscale up</code> to start tailscale. The tailscale connection will persist on reboot, so no need to worry
-      about adding it to your init process.
-    </p>
-    <p>
-      I recommend enabling MagicDNS in the admin console > DNS > MagicDNS, but if you prefer not to, your server's IP
-      address will be visible by running <code>tailscale ip -4</code>.
-    </p>
-    <p>
-      Head over to <code>http://&lt;hostname or ip&gt;:5000</code> on one of your other machines running tailscale to
-      upload,
-      download, and view your self-hosted files.
-    </p>
+      <p>
+        Once again, rebuild your configuration by running
+        <code>sudo nixos-rebuild switch</code> and run
+        <code>tailscale up</code> to start tailscale. The tailscale connection
+        will persist on reboot, so no need to worry resume adding it to your
+        init process.
+      </p>
+      <p>
+        I recommend enabling MagicDNS in the admin console > DNS > MagicDNS, but
+        if you prefer not to, your server's IP address will be visible by
+        running <code>tailscale ip -4</code>.
+      </p>
+      <p>
+        Head over to <code>http://&lt;hostname or ip&gt;:5000</code> on one of
+        your other machines running tailscale to upload, download, and view your
+        self-hosted files.
+      </p>
 
-    <h2>dufs clients</h2>
-    <p>
-      As for client recommendations, Round Sync<sup><a id="footnote-6-ref" href="#footnote-6"
-          title="link to footnote">6</a></sup> on android is quite good. it supports both WebDAV and HTTPS remotes, I
-      chose to use WebDAV when connecting.
-    </p>
-    <br>
-    <p>Thanks for stopping by ^.^</p>
+      <h2>dufs clients</h2>
+      <p>
+        As for client recommendations, Round Sync<sup
+          ><a id="footnote-6-ref" href="#footnote-6" title="link to footnote"
+            >6</a
+          ></sup
+        >
+        on android is quite good. it supports both WebDAV and HTTPS remotes, I
+        chose to use WebDAV when connecting.
+      </p>
+      <br />
+      <p>Thanks for stopping by ^.^</p>
 
-    <h2>Footnotes</h2>
-    <ol>
-      <li id="footnote-1">
-        <a href="https://github.com/sigoden/dufs">dufs</a>
-        <a href="#footnote-1-ref" title="return to text">&#8617;</a>
-      </li>
-      <li id="footnote-2">
-        <a href="https://tailscale.com/">Tailscale</a>
-        <a href="#footnote-2-ref" title="return to text">&#8617;</a>
-      </li>
-      <li id="footnote-3">
-        <a href="https://tailscale.com/kb/1081/magicdns">MagicDNS</a>
-        <a href="#footnote-3-ref" title="return to text">&#8617;</a>
-      </li>
-      <li id="footnote-4">
-        <a href="https://tailscale.com/kb/1193/tailscale-ssh">Tailscale SSH</a>
-        <a href="#footnote-4-ref" title="return to text">&#8617;</a>
-      </li>
-      <li id="footnote-5">
-        <a href="https://tailscale.com/kb/1153/enabling-https">Tailscale HTTPS</a>
-        <a href="#footnote-5-ref" title="return to text">&#8617;</a>
-      </li>
-      <li id="footnote-6">
-        <a href="https://github.com/newhinton/Round-Sync">Round Sync</a>
-        <a href="#footnote-6-ref" title="return to text">&#8617;</a>
-      </li>
-    </ol>
-    <a href="#top">^ Back to top</a>
-  </main>
+      <h2>Footnotes</h2>
+      <ol>
+        <li id="footnote-1">
+          <a href="https://github.com/sigoden/dufs">dufs</a>
+          <a href="#footnote-1-ref" title="return to text">&#8617;</a>
+        </li>
+        <li id="footnote-2">
+          <a href="https://tailscale.com/">Tailscale</a>
+          <a href="#footnote-2-ref" title="return to text">&#8617;</a>
+        </li>
+        <li id="footnote-3">
+          <a href="https://tailscale.com/kb/1081/magicdns">MagicDNS</a>
+          <a href="#footnote-3-ref" title="return to text">&#8617;</a>
+        </li>
+        <li id="footnote-4">
+          <a href="https://tailscale.com/kb/1193/tailscale-ssh"
+            >Tailscale SSH</a
+          >
+          <a href="#footnote-4-ref" title="return to text">&#8617;</a>
+        </li>
+        <li id="footnote-5">
+          <a href="https://tailscale.com/kb/1153/enabling-https"
+            >Tailscale HTTPS</a
+          >
+          <a href="#footnote-5-ref" title="return to text">&#8617;</a>
+        </li>
+        <li id="footnote-6">
+          <a href="https://github.com/newhinton/Round-Sync">Round Sync</a>
+          <a href="#footnote-6-ref" title="return to text">&#8617;</a>
+        </li>
+      </ol>
+      <a href="#top">^ Back to top</a>
+    </main>
 
-  <footer>
-    <hr>
-    Copyright (C) 2025 Will Holdsworth under MPLv2
-  </footer>
-</body>
-
+    <footer>
+      <hr />
+      Copyright (C) 2025 Will Holdsworth under MPLv2
+    </footer>
+  </body>
 </html>
